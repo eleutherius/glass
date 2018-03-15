@@ -1,0 +1,16 @@
+@media screen and (min-width:720px) and (max-width:1200px){
+  table  {
+   max-width: 60%;
+  }
+}
+@media screen and (min-width:480px) and (max-width:720px){
+  table  {
+   max-width: 80%;
+  }
+}
+@media screen and (min-width:1200px) {
+  table  {
+   max-width: 40%;
+  }
+}
+ 
