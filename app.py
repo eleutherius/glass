@@ -1,5 +1,6 @@
 import sqlite3
-from bottle import route, run, debug, template, request, error, static_file, get, post, FormsDict
+from bottle import route, run, debug, template, request, error, static_file, get, post
+#, FormsDict
 
 
 @route('/admin')
@@ -37,12 +38,16 @@ def new_item():
 def do_new_item():
 
     if request.POST.get('save','').strip():
-        new = request.POST.get('task', '').strip()
-        new1 = decode(new)
+
+        #Тут делаем непонятніе вещи с переданным значением формы
+        #оставить так как есть, пока не трогать!
+        #new = request.POST.get('task', '').strip()
+        new = request.POST.getunicode('task', '')
+
         conn = sqlite3.connect('journal.sql')
         c = conn.cursor()
 
-        query = "INSERT INTO todo (task,status) VALUES ('%s',1)" %new1
+        query = "INSERT INTO todo (task,status) VALUES ('%s',1)" %new
         c.execute(query)
         conn.commit()
 
