@@ -28,8 +28,24 @@ def journal_list():
 
     output = template('template/admin.tpl', rows=result, rows1=result1, rows2=result2, rows3=result3)
     return output
-# Создание новых строк
 
+@route('/login')
+def login():
+    return template('template/login.tpl')
+
+@route('/table')
+def table():
+    conn = sqlite3.connect('journal.sql')
+    f = conn.cursor()
+    f.execute("SELECT id, date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state FROM journal")
+    result4 = f.fetchall()
+    f.close()
+
+    output1 = template('template/table.tpl', rows4=result4)
+    return output1
+
+
+# Создание новых строк
 @get('/new')
 def new_item():
     return template('template/new_task.tpl')
@@ -97,6 +113,18 @@ def stylesheets(filename):
 @route('/img/<filepath:path>')
 def server_static(filepath):
         return static_file(filepath, root='./img')
+@route('/vendor/<filepath:path>')
+def server_static(filepath):
+        return static_file(filepath, root='./vendor')
+@route('/js/<filepath:path>')
+def server_static(filepath):
+        return static_file(filepath, root='./js')
+@route('/data/<filepath:path>')
+def server_static(filepath):
+        return static_file(filepath, root='./data')
+@route('/dist/<filepath:path>')
+def server_static(filepath):
+        return static_file(filepath, root='./dist')
 
 
 @error(403)
