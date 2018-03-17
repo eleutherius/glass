@@ -42,7 +42,7 @@
                             <a href="/table"> <i class="fa fa-table fa-fw"></i> Таблица</a>
                        </li>
                         <li>
-                            <a href="/new"><i class="fa fa-plus-square-o fa-fw"></i>Новый элемент</a>
+                            <a href="/form"><i class="fa fa-plus-square-o fa-fw"></i>Новый элемент</a>
                         </li>
                         <li>
                             <a href="/edit"><i class="fa fa-edit fa-fw"></i>Редактировать</a>

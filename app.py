@@ -29,6 +29,7 @@ def journal_list():
     output = template('template/admin.tpl', rows=result, rows1=result1, rows2=result2, rows3=result3)
     return output
 
+@route('/')
 @route('/login')
 def login():
     return template('template/login.tpl')
@@ -74,6 +75,41 @@ def do_new_item():
         return template('template/task_added.tpl', new_id=new_id)
     else:
         return "<p>POST failed.</p>"
+
+@get('/edit')
+def new_item():
+    return template('template/edit_table.tpl')
+
+
+@get('/form')
+def new_item():
+    return template('template/form.tpl')
+
+@post('/form')
+def do_new_item():
+
+    if request.POST.get('save','').strip():
+
+        #Тут делаем непонятніе вещи с переданным значением формы
+        #оставить так как есть, пока не трогать!
+        #new = request.POST.get('task', '').strip()
+        new = request.POST.getunicode('task', '')
+
+        conn = sqlite3.connect('journal.sql')
+        c = conn.cursor()
+
+        query = "INSERT INTO todo (task,status) VALUES ('%s',1)" %new
+        c.execute(query)
+        conn.commit()
+
+        c.execute("SELECT last_insert_rowid()")
+        new_id = c.fetchone()[0]
+        c.close
+
+        return template('template/task_added.tpl', new_id=new_id)
+    else:
+        return "<p>POST failed.</p>"
+
 
 @route('/edit/:no', method='GET')
 def edit_item(no):
