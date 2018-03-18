@@ -19,256 +19,107 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
+                                    <form role="form" id="form" action="/form"  method="POST" accept-charset="utf-8">
                                     <div class="col-lg-6">
                                       <h3>ПРИЕМ</h3>
 
-                                        <form role="form">
+
 
                                             <div class="form-group">
                                                 <label>Дата прихода</label>
-                                                <input class="form-control" placeholder="17.03.2018">
+                                                <input class="form-control"   type="text" size="100" maxlength="100" name = "date_in" placeholder="17.03.2018">
                                             </div>
                                             <div class="form-group">
                                                 <label>Контрагент</label>
-                                                <input class="form-control" placeholder="Вася Пупкмн">
+                                                <input class="form-control"  type="text" size="100" maxlength="100" name = "name" placeholder="Вася Пупкмн">
                                             </div>
                                             <div class="form-group">
                                                 <label>TTN</label>
-                                                <input class="form-control" placeholder="59000034321">
+                                                <input class="form-control"  type="text" size="100" maxlength="100" name = "ttn_in" placeholder="59000034321">
                                             </div>
                                             <div class="form-group">
                                                 <label>Адресс отправителя</label>
-                                                <input class="form-control" placeholder="Нихний мухосранск">
+                                                <input class="form-control" type="text" size="100" maxlength="100" name = "sours_address" placeholder="Нихний мухосранск">
                                             </div>
                                             <div class="form-group">
                                                 <label>Оборудование</label>
-                                                <input class="form-control" placeholder="Один модуль, два патчкорда">
+                                                <input class="form-control" name="equipment" placeholder="Один модуль, два патчкорда">
                                             </div>
                                             <div class="form-group">
                                                 <label>Серийный номер</label>
-                                                <input class="form-control" placeholder="SN:34634634632">
+                                                <input class="form-control" name="sn" placeholder="SN:34634634632">
                                             </div>
                                             <div class="form-group">
                                                 <label>MAC адресс</label>
-                                                <input class="form-control" placeholder="AA:CC:BB:DD:EE:FF">
+                                                <input class="form-control" name="mac" placeholder="AA:CC:BB:DD:EE:FF">
                                             </div>
                                             <div class="form-group">
                                                 <label>Причина возврата</label>
-                                                <input class="form-control" placeholder="Не подошло клиенту">
+                                                <input class="form-control"  name="reason" placeholder="Не подошло клиенту">
                                             </div>
 
-
-
-                                            <div class="form-group">
-                                                <label>Static Control</label>
-                                                <p class="form-control-static">email@example.com</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>File input</label>
-                                                <input type="file">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Text area</label>
-                                                <textarea class="form-control" rows="3"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Checkboxes</label>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">Checkbox 1
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">Checkbox 2
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">Checkbox 3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Inline Checkboxes</label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox">1
-                                                </label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox">2
-                                                </label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox">3
-                                                </label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Radio Buttons</label>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Inline Radio Buttons</label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-                                                </label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Selects</label>
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Multiple Selects</label>
-                                                <select multiple class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                            <button type="submit" class="btn btn-default">Submit Button</button>
-                                            <button type="reset" class="btn btn-default">Reset Button</button>
-                                        </form>
                                     </div>
                                     <!-- /.col-lg-6 (nested) -->
                                     <div class="col-lg-6">
                                         <h3>ОТПРАВКА</h3>
-                                        <form role="form">
+
                                           <div class="form-group">
                                               <label>Принято?</label>
                                               <div class="radio">
                                                   <label>
-                                                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Да
+                                                      <input type="radio" name="recd" id="optionsRadios1" value="Да"  checked>Да
                                                   </label>
                                               </div>
                                               <div class="radio">
                                                   <label>
-                                                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >Нет
+                                                      <input type="radio" name="recd" id="optionsRadios1" value="Нет" >Нет
                                                   </label>
                                               </div>
                                           </div>
                                           <div class="form-group">
                                               <label>Диагноз</label>
-                                              <input class="form-control" placeholder="Не исправно то-то... и то-то...">
+                                              <input class="form-control" name="diagnosis" placeholder="Не исправно то-то... и то-то...">
                                           </div>
                                           <div class="form-group">
                                               <label>Решение</label>
-                                              <input class="form-control" placeholder="Заменено, вернули клиенту">
+                                              <input class="form-control" name="decision" placeholder="Заменено, вернули клиенту">
                                           </div>
                                           <div class="form-group">
                                               <label>Контакт получателя</label>
-                                              <input class="form-control" placeholder="На фоисе забрал">
+                                              <input class="form-control" name="date_out" placeholder="На фоисе забрал">
                                           </div>
                                           <div class="form-group">
                                               <label>TTN</label>
-                                              <input class="form-control" placeholder="На офисе отгрузили!">
+                                              <input class="form-control" name="ttn_out" placeholder="На офисе отгрузили!">
+                                          </div>
+                                          <div class="form-group">
+                                              <label>Адресс получателя</label>
+                                              <input class="form-control" name="dest_address" placeholder="Ну например:233">
                                           </div>
                                           <div class="form-group">
                                               <label>Номер в 1С</label>
-                                              <input class="form-control" placeholder="Ну например:233">
+                                              <input class="form-control" name="num_1c" placeholder="Ну например:233">
                                           </div>
                                           <div class="form-group">
                                               <label>Обработано?</label>
                                               <div class="radio">
                                                   <label>
-                                                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Да
+                                                      <input type="radio" name="state" id="optionsRadios1" value="Да" checked>Да
                                                   </label>
                                               </div>
                                               <div class="radio">
                                                   <label>
-                                                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">Нет
+                                                      <input type="radio" name="state" id="optionsRadios1" value="Нет">Пока нет
                                                   </label>
                                               </div>
+                                              <button type="submit" class="btn btn-default" name="save" value="Сохранить"> Записать</button>
+                                              <button type="reset" class="btn btn-default">Отмена</button>
+
                                           </div>
 
-                                            <fieldset disabled>
-                                                <div class="form-group">
-                                                    <label for="disabledSelect">Disabled input</label>
-                                                    <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="disabledSelect">Disabled select menu</label>
-                                                    <select id="disabledSelect" class="form-control">
-                                                        <option>Disabled select</option>
-                                                    </select>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">Disabled Checkbox
-                                                    </label>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Disabled Button</button>
-                                            </fieldset>
-                                        </form>
-                                        <h1>Form Validation States</h1>
-                                        <form role="form">
-                                            <div class="form-group has-success">
-                                                <label class="control-label" for="inputSuccess">Input with success</label>
-                                                <input type="text" class="form-control" id="inputSuccess">
-                                            </div>
-                                            <div class="form-group has-warning">
-                                                <label class="control-label" for="inputWarning">Input with warning</label>
-                                                <input type="text" class="form-control" id="inputWarning">
-                                            </div>
-                                            <div class="form-group has-error">
-                                                <label class="control-label" for="inputError">Input with error</label>
-                                                <input type="text" class="form-control" id="inputError">
-                                            </div>
-                                        </form>
-                                        <h1>Input Groups</h1>
-                                        <form role="form">
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">@</span>
-                                                <input type="text" class="form-control" placeholder="Username">
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-addon">.00</span>
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon"><i class="fa fa-eur"></i>
-                                                </span>
-                                                <input type="text" class="form-control" placeholder="Font Awesome Icon">
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">$</span>
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-addon">.00</span>
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </form>
+
                                     </div>
+                                    </form>
                                     <!-- /.col-lg-6 (nested) -->
                                 </div>
                                 <!-- /.row (nested) -->

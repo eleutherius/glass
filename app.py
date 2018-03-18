@@ -63,7 +63,7 @@ def do_new_item():
 
         conn = sqlite3.connect('journal.sql')
         c = conn.cursor()
-
+        print (new)
         query = "INSERT INTO todo (task,status) VALUES ('%s',1)" %new
         c.execute(query)
         conn.commit()
@@ -84,7 +84,26 @@ def new_item():
 @get('/form')
 def new_item():
     return template('template/form.tpl')
+"""
+@post('/form')
+def do_new_item():
 
+    if request.POST.get('save','').strip():
+
+        date_in = request.forms.get('date_in')
+        name = request.forms.getunicode('name')
+        print (date_in)
+        print (name)
+        #new = request.forms.get('date_in', 'name', 'ttn_in', 'sours_address', 'equipment', 'sn', 'mac', 'reason', 'recd', 'diagnosis', 'decision', 'date_out', 'ttn_out', 'dest_address', 'num_1c', 'state', '').strip()
+
+
+
+        return "<p>POST failed.</p>"
+    else:
+
+        return "<p>POST failed.</p>"
+
+"""
 @post('/form')
 def do_new_item():
 
@@ -93,12 +112,29 @@ def do_new_item():
         #Тут делаем непонятніе вещи с переданным значением формы
         #оставить так как есть, пока не трогать!
         #new = request.POST.get('task', '').strip()
-        new = request.POST.getunicode('task', '')
-
+        date_in = request.forms.getunicode('date_in')
+        name = request.forms.getunicode('name')
+        ttn_in  = request.forms.getunicode('ttn_in')
+        sours_address = request.forms.getunicode('sours_address')
+        equipment = request.forms.getunicode('equipment')
+        sn = request.forms.getunicode('sn')
+        mac = request.forms.getunicode('mac')
+        reason = request.forms.getunicode('reason')
+        recd = request.forms.getunicode('recd')
+        diagnosis = request.forms.getunicode('diagnosis')
+        decision = request.forms.getunicode('decision')
+        date_out = request.forms.getunicode('date_out')
+        ttn_out = request.forms.getunicode('ttn_out')
+        dest_address = request.forms.getunicode('dest_address')
+        num_1c = request.forms.getunicode('num_1c')
+        state = request.forms.getunicode('state')
+        #new = request.forms.get('date_in', 'name', 'ttn_in', 'sours_address', 'equipment', 'sn', 'mac', 'reason', 'recd', 'diagnosis', 'decision', 'date_out', 'ttn_out', 'dest_address', 'num_1c', 'state', '').strip()
+        #new = [date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state]
         conn = sqlite3.connect('journal.sql')
         c = conn.cursor()
-
-        query = "INSERT INTO todo (task,status) VALUES ('%s',1)" %new
+        
+        #query = "INSERT INTO journal (date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state) VALUES ('%s',1)" %new
+        query = "INSERT INTO journal (date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state) VALUES ('%s',1)" %dest_address, ttn_in
         c.execute(query)
         conn.commit()
 
@@ -108,6 +144,7 @@ def do_new_item():
 
         return template('template/task_added.tpl', new_id=new_id)
     else:
+
         return "<p>POST failed.</p>"
 
 
