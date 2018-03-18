@@ -63,7 +63,7 @@ def do_new_item():
 
         conn = sqlite3.connect('journal.sql')
         c = conn.cursor()
-        print (new)
+
         query = "INSERT INTO todo (task,status) VALUES ('%s',1)" %new
         c.execute(query)
         conn.commit()
@@ -105,7 +105,7 @@ def do_new_item():
 
 """
 @post('/form')
-def do_new_item():
+def fuck_item():
 
     if request.POST.get('save','').strip():
 
@@ -132,15 +132,15 @@ def do_new_item():
         #new = [date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state]
         conn = sqlite3.connect('journal.sql')
         c = conn.cursor()
-        
+
         #query = "INSERT INTO journal (date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state) VALUES ('%s',1)" %new
-        query = "INSERT INTO journal (date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state) VALUES ('%s',1)" %dest_address, ttn_in
+        query = "INSERT INTO journal (date_in) VALUES ('%s')" %date_in
         c.execute(query)
         conn.commit()
 
         c.execute("SELECT last_insert_rowid()")
         new_id = c.fetchone()[0]
-        c.close
+        c.close() 
 
         return template('template/task_added.tpl', new_id=new_id)
     else:
