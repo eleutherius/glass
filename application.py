@@ -1,6 +1,10 @@
 import sqlite3
-from bottle import route, run, debug, template, request, error, static_file, get, post
-#, FormsDict
+from bottle import route, run, debug, template, request, error, static_file, get, post, Bottle
+
+app = Bottle()
+@app.route('/sss')
+def hello():
+    return "<p>hello</p>"
 
 
 @route('/admin')
@@ -84,34 +88,11 @@ def new_item():
 @get('/form')
 def new_item():
     return template('template/form.tpl')
-"""
 @post('/form')
-def do_new_item():
+def new_row():
 
     if request.POST.get('save','').strip():
 
-        date_in = request.forms.get('date_in')
-        name = request.forms.getunicode('name')
-        print (date_in)
-        print (name)
-        #new = request.forms.get('date_in', 'name', 'ttn_in', 'sours_address', 'equipment', 'sn', 'mac', 'reason', 'recd', 'diagnosis', 'decision', 'date_out', 'ttn_out', 'dest_address', 'num_1c', 'state', '').strip()
-
-
-
-        return "<p>POST failed.</p>"
-    else:
-
-        return "<p>POST failed.</p>"
-
-"""
-@post('/form')
-def fuck_item():
-
-    if request.POST.get('save','').strip():
-
-        #Тут делаем непонятніе вещи с переданным значением формы
-        #оставить так как есть, пока не трогать!
-        #new = request.POST.get('task', '').strip()
         date_in = request.forms.getunicode('date_in')
         name = request.forms.getunicode('name')
         ttn_in  = request.forms.getunicode('ttn_in')
@@ -128,26 +109,25 @@ def fuck_item():
         dest_address = request.forms.getunicode('dest_address')
         num_1c = request.forms.getunicode('num_1c')
         state = request.forms.getunicode('state')
-        #new = request.forms.get('date_in', 'name', 'ttn_in', 'sours_address', 'equipment', 'sn', 'mac', 'reason', 'recd', 'diagnosis', 'decision', 'date_out', 'ttn_out', 'dest_address', 'num_1c', 'state', '').strip()
-        #new = [date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state]
+
         conn = sqlite3.connect('journal.sql')
         c = conn.cursor()
 
-        #query = "INSERT INTO journal (date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state) VALUES ('%s',1)" %new
-        query = "INSERT INTO journal (date_in) VALUES ('%s')" %date_in
+        query = "INSERT INTO journal (date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state) VALUES (\'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\',\'{8}\',\'{9}\',\'{10}\',\'{11}\',\'{12}\',\'{13}\',\'{14}\',\'{15}\')".format(date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state)
+
         c.execute(query)
         conn.commit()
 
         c.execute("SELECT last_insert_rowid()")
         new_id = c.fetchone()[0]
-        c.close() 
+        c.close()
 
-        return template('template/task_added.tpl', new_id=new_id)
+        return template('template/row_added.tpl', new_id=new_id)
     else:
 
         return "<p>POST failed.</p>"
 
-
+"""
 @route('/edit/:no', method='GET')
 def edit_item(no):
 
@@ -177,6 +157,39 @@ def edit_item(no):
         print  (cur_data)
 
         return template('template/edit_task.tpl', old = cur_data, no = no)
+"""
+#@get('/edit/:no')
+#def new_item():
+#    return template('template/form.tpl')
+@get ('/edit/:no')
+def edit_item(no):
+
+    if request.GET.get('save','').strip():
+        edit = request.GET.get('task','').strip()
+        status = request.GET.get('status','').strip()
+
+        if status == 'open':
+            status = 1
+        else:
+            status = 0
+
+        conn = sqlite3.connect('journal.sql')
+        c = conn.cursor()
+        query = "UPDATE todo SET task = '%s', status = '%s' WHERE id LIKE '%s'" % (edit,status,no)
+        c.execute(query)
+        conn.commit()
+
+        return '<p>The item number %s was successfully updated</p>' %no
+
+    else:
+        conn = sqlite3.connect('journal.sql')
+        c = conn.cursor()
+        query = "SELECT date_in, name, ttn_in, sours_address, equipment, sn, mac, reason, recd, diagnosis, decision, date_out, ttn_out, dest_address, num_1c, state FROM journal WHERE id LIKE '%s'" %no
+        c.execute(query)
+        cur_data = c.fetchone()
+        print  (cur_data)
+
+        return template('template/edit_table.tpl', old = cur_data, no = no)
 
 #Добавляем CSS стили
 @get('/css/<filename:re:.*\.css>')
