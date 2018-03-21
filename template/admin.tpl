@@ -1,8 +1,5 @@
 % rebase('template/base.tpl', title='Table')
 
-
-
-
 <h1 align="center">Реальный журнал возвратов</h1>
 <table border="1" align="center" style="font-size: 16pt; color: #212121;">
 
