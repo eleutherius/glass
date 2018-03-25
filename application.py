@@ -60,9 +60,6 @@ def do_new_item():
 
     if request.POST.get('save','').strip():
 
-        #Тут делаем непонятніе вещи с переданным значением формы
-        #оставить так как есть, пока не трогать!
-        #new = request.POST.get('task', '').strip()
         new = request.POST.getunicode('task', '')
 
         conn = sqlite3.connect('journal.sql')
@@ -158,10 +155,10 @@ def edit_item(no):
 
         return template('template/edit_task.tpl', old = cur_data, no = no)
 """
-#@get('/edit/:no')
+#@get('/edit/<no>')
 #def new_item():
 #    return template('template/form.tpl')
-@get ('/edit/:no')
+@get ('/edit/<no>')
 def edit_item(no):
 
     if request.GET.get('save','').strip():
